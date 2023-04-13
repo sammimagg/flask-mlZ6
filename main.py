@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 from flask import Flask, request, jsonify
 from transformers import pipeline
 import os
-
+os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION'] = 'python'
 
 app = Flask(__name__)
 
