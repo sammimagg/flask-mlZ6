@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from transformers import pipeline, AutoConfig, AutoModelForSequenceClassification, AutoTokenizer
 import os
-from flask_cors import CORS
+#from flask_cors import CORS
 os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION'] = 'python'
 
 config_fake_news = AutoConfig.from_pretrained('./XL-Net-model/fake_news_model')
@@ -30,7 +30,7 @@ model_product_reviews = AutoModelForSequenceClassification.from_pretrained('./XL
 classifier_product_reviews = pipeline('text-classification', model=model_product_reviews, tokenizer=tokenizer_product_reviews)
 
 app = Flask(__name__)
-CORS(app)
+#CORS(app)
 
 
 @app.route('/predict-fake-news', methods=['POST'])
