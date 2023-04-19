@@ -9,17 +9,19 @@ RUN apt-get update && \
 # Set the working directory to /app
 WORKDIR /app
 
-# Download the repo
-RUN git clone https://github.com/sammimagg/XL-Net-model
+# Download the repo and models directory
+RUN git clone https://github.com/sammimagg/flask-mlZ6.git && \
+    cd flask-mlZ6 && \
+    git lfs pull && \
+    cd .. && \
+    git clone https://github.com/sammimagg/XL-Net-model.git && \
+    cd XL-Net-model && \
+    git lfs pull && \
+    cd .. && \
+    mv XL-Net-model flask-mlZ6/XL-Net-model
 
 # Navigate into the cloned directory
-WORKDIR /app/XL-Net-model/flask-mlZ6/models
-
-# Pull the large files using Git LFS
-RUN git lfs pull
-
-# Navigate back to the app directory
-WORKDIR /app/XL-Net-model/flask-mlZ6
+WORKDIR /app/flask-mlZ6
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
@@ -31,4 +33,4 @@ EXPOSE 5000
 ENV FLASK_APP=app.py
 
 # Run app.py when the container launches
-CMD ["python", "main.py"]
+CMD ["python", "app.py"]
