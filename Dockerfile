@@ -22,7 +22,6 @@ RUN git clone https://github.com/sammimagg/flask-mlZ6.git && \
 
 # Navigate into the cloned directory
 WORKDIR /app/flask-mlZ6
-
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
