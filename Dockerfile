@@ -10,13 +10,16 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Download the repo
-RUN git clone https://github.com/sammimagg/flask-mlZ6.git
+RUN git clone https://github.com/sammimagg/XL-Net-model
 
 # Navigate into the cloned directory
-WORKDIR /app/flask-mlZ6
+WORKDIR /app/XL-Net-model/flask-mlZ6/models
 
-# Pull the large file using Git LFS
+# Pull the large files using Git LFS
 RUN git lfs pull
+
+# Navigate back to the app directory
+WORKDIR /app/XL-Net-model/flask-mlZ6
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
